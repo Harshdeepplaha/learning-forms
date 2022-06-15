@@ -1,46 +1,60 @@
+
+
+
+
 <div class="container-fluid">
   <div class="row">
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="container-fluid">
-        <div class="user-data">
+        <div ngModelGroup = "userdata"
+        #userdata = "ngModelGroup"
+        class="user-data">
           <div class="forms-group">
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
-              <input type="text"
-                class="form-control" name="" id="username" aria-describedby="helpId" placeholder="">
+              <input [(ngModel)]="answer"
+              required
+              type="text"
+                class="form-control" name="username" id="username" aria-describedby="helpId" placeholder="">
+               </div>
+               <div class="mb-3">
+                 <label for="" class="form-label"></label>
+                 <textarea *ngIf="answer!=''" class="form-control" name="" id="" rows="3">{{answer}}</textarea>
                </div>
           </div>
           <div class="forms-group">
 
             <label for="">Enter your email</label>
-            <input ngModel type="email" class="form-control" name="" id="" aria-describedby="emailHelpId"
-              placeholder="">
+            <input
+            required
+            email
+            ngModel type="email" class="form-control" name="email" id="" aria-describedby="emailHelpId"
+              placeholder="" #email = "ngModel">
             <small id="emailHelpId" class="form-text text-muted"></small>
           </div>
-          <div class="form-group">
-            <div class="mb-3">
-              <label for="secret" class="form-label">City</label>
-              <select ngModel class="form-control" name="select your City" id="secret">
-                <option value="pet">your first pet</option>
-                <option value="pet">your first pet</option>
-                <option value="pet">your first pet</option>
-              </select>
-            </div>
-          </div>
+          <p class="form-text text-muted" *ngIf="!email.valid && email.touched" >
+            please enter the valid email!
+          </p>
+<p *ngIf="!userdata.valid && userdata.touched" class="form-text text-muted">
+  invalid user data
+</p>
+
+
+
+
         </div>
          <div class="mb-3">
           <label for="secret" class="form-label">Secret Question</label>
-          <select class="form-select" name="Secret" id="secret">
-
+          <select [ngModel]="defaultQuestion" class="form-select" name="Secret" id="secret">
+            <option value="teacher">your First teacher</option>
             <option value="pet">Your frist pet?</option>
             <option value="teacher">your First teacher</option>
 
           </select>
         </div>
         <div class="d-grid gap-2">
-          <button type="submit" name="" id="" class="btn btn-primary">Submit</button>
+          <button [disabled]="!f.valid" type="submit" name="" id="" class="btn btn-primary">Submit</button>
         </div>
-
 
 
 

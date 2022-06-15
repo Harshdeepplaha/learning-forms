@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -7,16 +7,40 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @ViewChild('f') signupform: NgForm | undefined
   title = 'learning-forms';
   defaultQuestion = 'your first pet?';
+  genders = ['male', 'female'];
   answer = '';
+  user = {
+    username:'',
+    email:'',
+    gender:'',
+    secretQuestion:''
 
 
-onSubmit(form: NgForm){
-  console.log(form);
+  };
+
+submitted = false;
+
+
+
+// onSubmit(form: NgForm){
+//   console.log(form);
+
+onSubmit(){
+  this.submitted = true;
+this.user.username = this.signupform?.value.userdata.username;
+this.signupform?.reset();
+
+
 
 }
+
+
+
 }
+
 
 
 

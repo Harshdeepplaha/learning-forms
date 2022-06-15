@@ -1,49 +1,48 @@
-
-
-
-
 <div class="container-fluid">
   <div class="row">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+
+    <form (ngSubmit)="onSubmit()" #f="ngForm">
       <div class="container-fluid">
-        <div ngModelGroup = "userdata"
-        #userdata = "ngModelGroup"
-        class="user-data">
+        <div ngModelGroup="userdata" #userdata="ngModelGroup" class="user-data">
           <div class="forms-group">
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
-              <input [(ngModel)]="answer"
-              required
-              type="text"
-                class="form-control" name="username" id="username" aria-describedby="helpId" placeholder="">
-               </div>
-               <div class="mb-3">
-                 <label for="" class="form-label"></label>
-                 <textarea *ngIf="answer!=''" class="form-control" name="" id="" rows="3">{{answer}}</textarea>
-               </div>
+              <input [(ngModel)]="answer" required type="text" class="form-control" name="username" id="username"
+                aria-describedby="helpId" placeholder="">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label"></label>
+              <textarea *ngIf="answer!=''" class="form-control" name="" id="" rows="3">{{answer}}</textarea>
+            </div>
           </div>
           <div class="forms-group">
 
             <label for="">Enter your email</label>
-            <input
-            required
-            email
-            ngModel type="email" class="form-control" name="email" id="" aria-describedby="emailHelpId"
-              placeholder="" #email = "ngModel">
+            <input required email ngModel type="email" class="form-control" name="email" id=""
+              aria-describedby="emailHelpId" placeholder="" #email="ngModel">
             <small id="emailHelpId" class="form-text text-muted"></small>
           </div>
-          <p class="form-text text-muted" *ngIf="!email.valid && email.touched" >
+          <p class="form-text text-muted" *ngIf="!email.valid && email.touched">
             please enter the valid email!
           </p>
-<p *ngIf="!userdata.valid && userdata.touched" class="form-text text-muted">
-  invalid user data
-</p>
+          <p *ngIf="!userdata.valid && userdata.touched" class="form-text text-muted">
+            invalid user data
+          </p>
+
+          <div *ngFor="let gender of genders" class="form-check">
+            <input ngModel [value]="gender" class="form-check-input" type="radio" name="" id="">
+            <label class="form-check-label" for="">
+              {{gender}}
+            </label>
+          </div>
+
 
 
 
 
         </div>
-         <div class="mb-3">
+        <div class="mb-3">
           <label for="secret" class="form-label">Secret Question</label>
           <select [ngModel]="defaultQuestion" class="form-select" name="Secret" id="secret">
             <option value="teacher">your First teacher</option>
@@ -59,7 +58,23 @@
 
 
       </div>
+
+
+
     </form>
+    <hr>
+
+    <h3>Your Data</h3>
+    <div *ngIf="submitted" class="row">
+      <div class="col-xs-12">
+        <p>username: {{user.username}}</p>
+        <p>Email:</p>
+        <p>secretQuestion:</p>
+        <p>gender:</p>
+
+
+      </div>
+    </div>
 
   </div>
 </div>

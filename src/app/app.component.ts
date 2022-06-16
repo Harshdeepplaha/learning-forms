@@ -1,3 +1,7 @@
+
+
+
+
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -6,7 +10,9 @@ import { NgForm } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent  {
+
+
   @ViewChild('f') signupform: NgForm | undefined
   title = 'learning-forms';
   defaultQuestion = 'your first pet?';
@@ -36,6 +42,12 @@ this.signupform?.reset();
 
 
 }
+
+
+
+
+
+
 
 
 
